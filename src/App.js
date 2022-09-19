@@ -5,7 +5,7 @@ function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("/hello")
+    fetch("/connection")
       .then((res) => res.json())
       .then((data) => setData(data.message));
   }, []);
