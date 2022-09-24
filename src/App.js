@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import React from "react";
+import { Navbar } from "./components/Navbar/Navbar";
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -11,6 +12,7 @@ function App() {
   }, []);
   return (
     <div className="container">
+      <Navbar />
       <Header />
       <p>{!data ? "Loading..." : data}</p>
     </div>
