@@ -1,3 +1,7 @@
+* {
+  background-color: rgb(112, 108, 77);
+}
+
 .navbarItems {
   background-color: grey;
   color: white;
@@ -5,16 +9,81 @@
   display: flex;
   justify-content: right;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
-li {
-  border: solid white 1px;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 7px;
-  text-align: center;
-  display: inline-block;
-  cursor: pointer;
+.nav {
+  display: grid;
   background-color: inherit;
+  grid-template-columns: repeat(5, auto);
+  grid-gap: 10px;
+  text-align: center;
+  width: 70vw;
+  justify-content: end;
+  margin-right: 2rem;
+}
+
+.navLink {
+  background-color: grey;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.navLink:hover {
+  background-color: lightgray;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
+}
+
+/* imported burger icons */
+.fa-bars,
+.fa-times {
+  display: none;
+}
+
+/* mobile view */
+@media screen and (max-width: 960px) {
+  .navbarItems {
+    position: relative;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    left: 100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  .nav.active {
+    display: flex;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .navLink {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
+
+  .navLink:hover {
+    background-color: rgb(211, 211, 211);
+    border-radius: 0;
+    transition: all 0.2s ease-out;
+  }
+
+  .fa-bars,
+  .fa-times {
+    display: flex;
+    background-color: inherit;
+    font-size: 1.3rem;
+  }
 }

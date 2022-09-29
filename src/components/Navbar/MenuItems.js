@@ -2,16 +2,16 @@ export const MenuItems = [
   {
     title: "Home",
     route: "/",
-    class: "navLinks", // necessary in the future, if we opt to develop for mobile as well
+    class: "navLink", // necessary in the future, if we opt to develop for mobile as well
   },
   {
     title: "Modules",
     route: "/modules",
-    class: "navLinks",
+    class: "navLink",
   },
   {
     title: "Settings",
     route: "/user",
-    class: "navLinks",
+    class: "navLink",
   },
 ];
