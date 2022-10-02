@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Module_view.css";
 
 export const Module = (item) => {
   const [clicked, handleClick] = useState(false);
@@ -10,8 +11,15 @@ export const Module = (item) => {
     >
       <a href={item.module.mod_code} onClick={() => handleClick(!clicked)}>
         <div className="moduleTitle">{item.module.name}</div>
+        <div className={clicked ? "" : "hideToggle"}> ... </div>
       </a>
-      <div className="moduleInfo">{item.module.coordinator}</div>
+      <div className="moduleInfo">
+        <p>
+          (progress bar)
+          <br />
+          (next deadline)
+        </p>
+      </div>
     </div>
   );
 };
