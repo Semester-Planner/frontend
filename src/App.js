@@ -2,9 +2,9 @@ import { ModuleGallery } from "./components/Modules/Module_view";
 
 function App() {
   return (
-    <div className="container">
-      <ModuleGallery />
-    </div>
+  <div className="container">
+    <ModuleGallery />
+  </div>
   );
 }
 
