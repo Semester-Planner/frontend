@@ -1,19 +1,26 @@
 import { useState } from "react";
 
-export const ModuleGallery = (props) => {
+export const Module = (item) => {
   const [clicked, handleClick] = useState(false);
   return (
+    <div
+      className={
+        clicked ? "active module " : "module " + item.module.department
+      }
+    >
+      <a href={item.module.mod_code} onClick={() => handleClick(!clicked)}>
+        <div className="moduleTitle">{item.module.name}</div>
+      </a>
+      <div className="moduleInfo">{item.module.coordinator}</div>
+    </div>
+  );
+};
+
+export const ModuleGallery = (props) => {
+  return (
     <div className="modulesGallery">
-      {props.modules.map((module) => {
-        return (
-          <div
-            className={clicked ? "module active" : "module" + module.department}
-          >
-            <a href={module.mod_code} onClick={() => handleClick(!clicked)}>
-              <div className="moduleTitle">{module.name}</div>
-            </a>
-          </div>
-        );
+      {props.modules.map((item, index) => {
+        return <Module module={item} key={index} />;
       })}
     </div>
   );
