@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Module_view.css";
 
-export const Module = (item) => {
+export const Module = (props) => {
   return (
     <div
       className={
-        item.active
-          ? "active module " + item.module.department
-          : "module " + item.module.department
+        props.active
+          ? "active module " + props.module.department
+          : "module " + props.module.department
       }
     >
-      <div className="moduleHeader" onClick={item.onClick}>
-        <div className="moduleTitle">{item.module.name}</div>
-        <div className={item.active ? "" : "hideToggle"}> ... </div>
+      <div className="moduleHeader" onClick={props.onClick}>
+        <div className="moduleTitle">{props.module.name}</div>
+        <div className={props.active ? "" : "hideToggle"}> ... </div>
       </div>
       <div className="moduleInfo">
         <p>
@@ -26,6 +26,8 @@ export const Module = (item) => {
 };
 
 export const ModuleGallery = (props) => {
+  const [modules, setModules] = useState(null);
+
   const [active, setActive] = useState(-1);
   const checkActive = (index) => {
     if (active === index || active !== -1) {
@@ -34,18 +36,42 @@ export const ModuleGallery = (props) => {
       setActive(index);
     }
   };
+
+  useEffect(() => {
+    fetch("/user/findAllUserModules", {
+      method: "POST",
+      body: JSON.stringify({ userId: "f3cab624-0a6d-419c-a39e-ffc6750c6415" }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((modules) => setModules(modules[0].Modules));
+  }, []);
+
   return (
     <div className="modulesGallery">
-      {props.modules.map((item, index) => {
-        return (
-          <Module
-            module={item}
-            key={index}
-            onClick={() => checkActive(index)}
-            active={active === index}
-          />
-        );
-      })}
+      {modules
+        ? modules.map((module, index) => {
+            return (
+              <Module
+                module={module}
+                key={index}
+                onClick={() => checkActive(index)}
+                active={active === index}
+              />
+            );
+          })
+        : props.modules.map((module, index) => {
+            return (
+              <Module
+                module={module}
+                key={index}
+                onClick={() => checkActive(index)}
+                active={active === index}
+              />
+            );
+          })}
     </div>
   );
 };
