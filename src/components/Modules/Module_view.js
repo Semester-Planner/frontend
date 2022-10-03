@@ -2,18 +2,17 @@ import { useState } from "react";
 import "./Module_view.css";
 
 export const Module = (item) => {
-  const [clicked, handleClick] = useState(false);
   return (
     <div
       className={
-        clicked
+        item.active
           ? "active module " + item.module.department
           : "module " + item.module.department
       }
     >
-      <div className="moduleHeader" onClick={() => handleClick(!clicked)}>
+      <div className="moduleHeader" onClick={item.onClick}>
         <div className="moduleTitle">{item.module.name}</div>
-        <div className={clicked ? "" : "hideToggle"}> ... </div>
+        <div className={item.active ? "" : "hideToggle"}> ... </div>
       </div>
       <div className="moduleInfo">
         <p>
@@ -27,10 +26,25 @@ export const Module = (item) => {
 };
 
 export const ModuleGallery = (props) => {
+  const [active, setActive] = useState(-1);
+  const checkActive = (index) => {
+    if (active === index || active !== -1) {
+      setActive(-1);
+    } else {
+      setActive(index);
+    }
+  };
   return (
     <div className="modulesGallery">
       {props.modules.map((item, index) => {
-        return <Module module={item} key={index} />;
+        return (
+          <Module
+            module={item}
+            key={index}
+            onClick={() => checkActive(index)}
+            active={active === index}
+          />
+        );
       })}
     </div>
   );
