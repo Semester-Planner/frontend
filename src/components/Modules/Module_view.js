@@ -6,13 +6,15 @@ export const Module = (item) => {
   return (
     <div
       className={
-        clicked ? "active module " : "module " + item.module.department
+        clicked
+          ? "active module " + item.module.department
+          : "module " + item.module.department
       }
     >
-      <a href={item.module.mod_code} onClick={() => handleClick(!clicked)}>
+      <div className="moduleHeader" onClick={() => handleClick(!clicked)}>
         <div className="moduleTitle">{item.module.name}</div>
         <div className={clicked ? "" : "hideToggle"}> ... </div>
-      </a>
+      </div>
       <div className="moduleInfo">
         <p>
           (progress bar)

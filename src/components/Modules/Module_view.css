@@ -10,7 +10,11 @@
   margin: 0.5rem;
 }
 
-a {
+.active {
+  width: 150%;
+}
+
+.moduleHeader {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
