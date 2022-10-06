@@ -1,6 +1,6 @@
-import Header from "./components/Header";
 import React from "react";
 import { Navbar } from "./components/Navbar/Navbar";
+import { ModuleGallery } from "./components/Modules/Module_view";
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="container">
       <Navbar />
-      <Header />
+      <ModuleGallery />
       <p>{!data ? "Loading..." : data}</p>
     </div>
   );
