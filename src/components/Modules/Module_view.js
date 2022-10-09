@@ -1,6 +1,5 @@
 import { Row, Col, Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import "./Module_view.css";
 
 export const Module = (props) => {
   return (
@@ -133,10 +132,10 @@ ModuleGallery.defaultProps = {
       coordinator: "Pras Gunasekera",
     },
     {
-      name: "Design Methods",
-      mod_code: "ID_06",
-      department: "ID",
-      coordinator: "Pras Gunasekera",
+      name: "Communication & Presentation",
+      mod_code: "PM_01",
+      department: "PM",
+      coordinator: "Florian Grote",
     },
     {
       name: "Design Methods",
