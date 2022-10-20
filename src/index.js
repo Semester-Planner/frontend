@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 import App from "./App";
+import ErrorPage from "./error";
 import { ModuleGallery } from "./components/Modules/Module_view";
 import BackendConnection from "./components/Connection";
 
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "modules",
