@@ -1,4 +1,5 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import "./Custom.scss";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -15,8 +16,13 @@ function App() {
   return (
     <div className="container-fluid">
       <Navbar />
-      <ModuleGallery />
-      <p>{!data ? "Loading..." : data}</p>
+      <Routes>
+        <Route path="modules" element={<ModuleGallery />} />
+        <Route
+          path="connection"
+          element={data ? <h2>{data}</h2> : <h2>Loading..</h2>}
+        />
+      </Routes>
     </div>
   );
 }
