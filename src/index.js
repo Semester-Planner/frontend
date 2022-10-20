@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import App from "./App";
 import { ModuleGallery } from "./components/Modules/Module_view";
+import BackendConnection from "./components/Connection";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "modules",
         element: <ModuleGallery />,
+      },
+      {
+        path: "connection",
+        element: <BackendConnection />,
       },
     ],
   },
