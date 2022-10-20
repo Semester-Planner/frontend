@@ -1,9 +1,8 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./Custom.scss";
 
 import Navbar from "./components/Navbar/Navbar";
-import { ModuleGallery } from "./components/Modules/Module_view";
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -16,13 +15,7 @@ function App() {
   return (
     <div className="container-fluid">
       <Navbar />
-      <Routes>
-        <Route path="modules" element={<ModuleGallery />} />
-        <Route
-          path="connection"
-          element={data ? <h2>{data}</h2> : <h2>Loading..</h2>}
-        />
-      </Routes>
+      <Outlet />
     </div>
   );
 }
