@@ -1,5 +1,7 @@
 import React from "react";
-import { Navbar } from "./components/Navbar/Navbar";
+import "./Custom.scss";
+
+import Navbar from "./components/Navbar/Navbar";
 import { ModuleGallery } from "./components/Modules/Module_view";
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
       .then((data) => setData(data.message));
   }, []);
   return (
-    <div className="container">
+    <div className="container-fluid">
       <Navbar />
       <ModuleGallery />
       <p>{!data ? "Loading..." : data}</p>

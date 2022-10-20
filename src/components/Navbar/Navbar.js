@@ -1,27 +1,20 @@
-import { useState } from "react";
-import Button from "../Button";
-import { MenuItems } from "./MenuItems";
-import "./Navbar.css";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
-export const Navbar = () => {
-  const [clicked, handleClick] = useState(false);
-
+export default function Navigation() {
   return (
-    <nav className="navbarItems">
-      <Button onClick={() => handleClick(!clicked)}>
-        <i className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
-      </Button>
-      <ul className={clicked ? "nav active" : "nav"}>
-        {MenuItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <a className={item.class} href={item.route}>
-                {item.title}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+    <Navbar sticky="top" bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="home">The Semester Planner</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="timeline">Timeline</Nav.Link>
+            <Nav.Link href="modules">Modules</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
-};
+}
