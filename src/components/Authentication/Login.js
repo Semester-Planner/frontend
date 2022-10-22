@@ -7,15 +7,14 @@ export const Login = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <div className="text-center">
-      <h1 className="p-3">Login page :)</h1>
-      <Button variant="dark" onClick={handleShow}>
+    <>
+      <Button variant="secondary" onClick={handleShow}>
         {" "}
         Log in{" "}
       </Button>
 
       <LoginModal show={show} onHide={handleClose} />
-    </div>
+    </>
   );
 };
 

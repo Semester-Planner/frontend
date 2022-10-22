@@ -18,10 +18,6 @@ const router = createBrowserRouter([
         path: "modules",
         element: <ModuleGallery />,
       },
-      {
-        path: "login",
-        element: <Login />,
-      },
     ],
   },
 ]);

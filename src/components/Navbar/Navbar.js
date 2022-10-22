@@ -1,6 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Login } from "../Authentication/Login";
 
 export default function Navigation() {
   return (
@@ -12,6 +13,10 @@ export default function Navigation() {
           <Nav className="me-auto">
             <Nav.Link href="timeline">Timeline</Nav.Link>
             <Nav.Link href="modules">Modules</Nav.Link>
+            <Nav.Link href="">
+              {" "}
+              <Login />{" "}
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
