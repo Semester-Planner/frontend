@@ -55,16 +55,16 @@ export const ModuleGallery = (props) => {
   useEffect(() => {
     fetch("/user/findAllUserModules", {
       method: "POST",
-      body: JSON.stringify({ userId: "f3cab624-0a6d-419c-a39e-ffc6750c6415" }),
+      body: JSON.stringify({ userId: "26311d1f-5461-4696-84be-55be177f5e95" }),
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((res) => {
         if (res.status !== 200) throw new Error("Server not connected");
-        res.json();
+        return res.json();
       })
-      .then((modules) => setModules(modules[0].Modules))
+      .then((modules) => setModules(modules))
       .catch((error) => console.log(error));
   }, []);
 

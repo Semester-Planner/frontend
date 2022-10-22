@@ -6,7 +6,7 @@ export default function Navigation() {
   return (
     <Navbar sticky="top" bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="connection">The Semester Planner</Navbar.Brand>
+        <Navbar.Brand href="/">The Semester Planner</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
