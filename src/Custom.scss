@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./Components/Navbar/Navbar.scss";
 @import "./components/Modules/Module_view.scss";
+@import "./components/Authentication/Login.scss";
 
 .container-fluid {
   --bs-gutter-x: 0 rem;

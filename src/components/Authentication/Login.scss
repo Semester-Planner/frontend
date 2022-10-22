@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
+img {
+  $size: 2rem;
+  width: $size;
+  height: $size;
+  margin-right: 24px;
+}
+
+#Google {
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 1rem;
+  height: 60px;
+  background-color: #ffffff;
+  border: solid #0000006c 1px;
+  padding: 8px;
+
+  &:hover {
+    border: solid #4285f4 1px;
+  }
+  &:active {
+    background-color: #4285f4;
+  }
+}
