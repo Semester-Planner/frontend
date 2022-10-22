@@ -60,8 +60,12 @@ export const ModuleGallery = (props) => {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
-      .then((modules) => setModules(modules[0].Modules));
+      .then((res) => {
+        if (res.status != 200) throw new Error("Server not connected");
+        res.json();
+      })
+      .then((modules) => setModules(modules[0].Modules))
+      .catch((error) => console.log(error));
   }, []);
 
   // checks if server responded, otherwise seeds view for development
