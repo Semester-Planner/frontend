@@ -61,7 +61,7 @@ export const ModuleGallery = (props) => {
       },
     })
       .then((res) => {
-        if (res.status != 200) throw new Error("Server not connected");
+        if (res.status !== 200) throw new Error("Server not connected");
         res.json();
       })
       .then((modules) => setModules(modules[0].Modules))
