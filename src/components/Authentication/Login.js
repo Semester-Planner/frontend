@@ -16,22 +16,26 @@ export const Login = () => {
   );
 };
 
+export const Logout = () => {
+  const logoutAPI = () => {
+    fetch("/auth/logout", {})
+      .then((res) => {
+        if (res.status !== 200) throw new Error("Something's wrong");
+        return (window.location.href = "/");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  return (
+    <Button variant="secondary" onClick={() => logoutAPI()}>
+      Log out
+    </Button>
+  );
+};
+
 export const LoginModal = (props) => {
   const loginAPI = () => {
     window.open(`http://localhost:3001/auth/google`, "_self");
-  };
-
-  const logoutAPI = () => {
-    fetch("/auth/logout", {
-      method: "GET",
-      // mode: 'no-cors'
-    })
-      .then((res) => {
-        if (res.status !== 200) throw new Error("Server not connected");
-        return res.json();
-      })
-      .then((modules) => console.log(modules))
-      .catch((error) => console.log(error));
   };
 
   return (
@@ -48,7 +52,6 @@ export const LoginModal = (props) => {
           />
           Sign in with Google
         </Button>
-        <Button onClick={() => logoutAPI()}>Log out</Button>
       </Modal.Body>
     </Modal>
   );
