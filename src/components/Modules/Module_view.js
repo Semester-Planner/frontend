@@ -53,13 +53,7 @@ export const ModuleGallery = (props) => {
   const [modules, setModules] = useState(null);
 
   useEffect(() => {
-    fetch("/user/findAllUserModules", {
-      method: "POST",
-      body: JSON.stringify({ userId: "26311d1f-5461-4696-84be-55be177f5e95" }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch("/user/findAllUserModules", {})
       .then((res) => {
         if (res.status !== 200) throw new Error("Server not connected");
         return res.json();
