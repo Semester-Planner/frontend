@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Login } from "../Authentication/Login";
+import { Login, Logout } from "../Authentication/Login";
 
 export default function Navigation() {
   return (
@@ -14,8 +14,10 @@ export default function Navigation() {
             <Nav.Link href="timeline">Timeline</Nav.Link>
             <Nav.Link href="modules">Modules</Nav.Link>
             <Nav.Link href="">
-              {" "}
-              <Login />{" "}
+              <Login />
+            </Nav.Link>
+            <Nav.Link href="">
+              <Logout />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
