@@ -9,30 +9,17 @@ export const Login = () => {
   return (
     <>
       <Button variant="secondary" onClick={handleShow}>
-        {" "}
-        Log in{" "}
+        Log in
       </Button>
-
       <LoginModal show={show} onHide={handleClose} />
     </>
   );
 };
 
 export const LoginModal = (props) => {
-  // const loginAPI = () => {
-  //     fetch("/auth/google", {
-  //     method: "GET",
-  //     redirect: 'follow',
-  //     mode: 'no-cors'
-  //     })
-  //     .then((res) => {
-  //         if (res.status !== 200) throw new Error("Server not connected");
-  //         return res.json()
-  //     })
-  //     .then((user) => console.log(user))
-  //     .catch((error) => console.log(error));
-  // }
-  // }
+  const loginAPI = () => {
+    window.open(`http://localhost:3001/auth/google`, "_self");
+  };
 
   const logoutAPI = () => {
     fetch("/auth/logout", {
@@ -54,13 +41,7 @@ export const LoginModal = (props) => {
       </Modal.Header>
       <Modal.Body className="text-center pt-5 pb-5">
         <h5 className="pb-3">Make sure to use your CODE email.</h5>
-        <Button
-          id="Google"
-          variant="light"
-          onClick={() =>
-            window.open(`http://localhost:3001/auth/google`, "_self")
-          }
-        >
+        <Button id="Google" variant="light" onClick={() => loginAPI()}>
           <img
             src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
             alt="G logo"
