@@ -21,7 +21,7 @@ export const Logout = () => {
     fetch("/auth/logout", {})
       .then((res) => {
         if (res.status !== 200) throw new Error("Something's wrong");
-        return (window.location.href = "/");
+        return (window.location.href = "/login");
       })
       .catch((error) => console.log(error));
   };
