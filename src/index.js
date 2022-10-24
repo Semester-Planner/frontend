@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
@@ -8,10 +8,21 @@ import ErrorPage from "./error";
 import { ModuleGallery } from "./components/Modules/Module_view";
 import { Login } from "./components/Authentication/Login";
 
+const CheckAuth = () => {
+  useEffect(() => {
+    fetch("/auth/session", {})
+      .then((res) => {
+        if (res.status === 401) return (window.location.href = "/login");
+      })
+      .catch((error) => console.log(error));
+  }, []);
+  return <App />;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <CheckAuth />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -20,13 +31,17 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/login",
+    element: <Login />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
