@@ -1,5 +1,19 @@
 import { Button } from "react-bootstrap";
 
+import App from "../../App";
+
+export const CheckAuth = () => {
+  useEffect(() => {
+    fetch("/auth/session", {})
+      .then((res) => {
+        if (res.status === 401) return (window.location.href = "/login");
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  return <App />;
+};
+
 export const Login = () => {
   const loginAPI = () => {
     window.open(`http://localhost:3001/auth/google`, "_self");

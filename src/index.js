@@ -1,23 +1,11 @@
-import { StrictMode, useEffect } from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
-import App from "./App";
 import ErrorPage from "./error";
 import { ModuleGallery } from "./components/Modules/Module_view";
-import { Login } from "./components/Authentication/Login";
-
-const CheckAuth = () => {
-  useEffect(() => {
-    fetch("/auth/session", {})
-      .then((res) => {
-        if (res.status === 401) return (window.location.href = "/login");
-      })
-      .catch((error) => console.log(error));
-  }, []);
-  return <App />;
-};
+import { Login, CheckAuth } from "./components/Authentication/Login";
 
 const router = createBrowserRouter([
   {
