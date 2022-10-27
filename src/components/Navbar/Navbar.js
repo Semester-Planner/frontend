@@ -14,9 +14,6 @@ export default function Navigation() {
             <Nav.Link href="timeline">Timeline</Nav.Link>
             <Nav.Link href="modules">Modules</Nav.Link>
             <Nav.Link href="">
-              <Login />
-            </Nav.Link>
-            <Nav.Link href="">
               <Logout />
             </Nav.Link>
           </Nav>

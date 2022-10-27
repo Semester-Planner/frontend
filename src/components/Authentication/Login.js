@@ -1,4 +1,4 @@
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 export const Login = () => {
   const loginAPI = () => {
