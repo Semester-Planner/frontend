@@ -7,12 +7,12 @@ export const Login = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <>
+    <div id="xy">
       <Button variant="secondary" onClick={handleShow}>
         Log in
       </Button>
       <LoginModal show={show} onHide={handleClose} />
-    </>
+    </div>
   );
 };
 

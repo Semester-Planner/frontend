@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 
+$img-size: 2rem;
+
 img {
-  $size: 2rem;
-  width: $size;
-  height: $size;
+  width: $img-size;
+  height: $img-size;
   margin-right: 24px;
 }
 
