@@ -42,7 +42,7 @@ export const Login = () => {
           fill="#dee2e6"
         ></path>
       </svg>
-      <div className="login-box p-5 rounded text-center">
+      <div className="login-box">
         <h3> Log in to Semester Planner</h3>
         <h6 className="p-3">Make sure to use your CODE email</h6>
         <Button id="Google" variant="light" onClick={() => loginAPI()}>
