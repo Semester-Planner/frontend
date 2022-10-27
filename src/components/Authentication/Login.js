@@ -1,16 +1,26 @@
 import { Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
 
 import App from "../../App";
 
 export const CheckAuth = () => {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch("/auth/session", {})
       .then((res) => {
         if (res.status === 401) return (window.location.href = "/login");
+        setLoading((loading) => !loading);
       })
       .catch((error) => console.log(error));
   }, []);
 
+  if (loading)
+    return (
+      <div id="xy" className="loading-screen">
+        .
+      </div>
+    );
   return <App />;
 };
 
