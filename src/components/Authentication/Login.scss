@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
+$img-size: 2rem;
+
+.loading-screen {
+  width: 40px;
+  height: 26px;
+  --c: linear-gradient(currentColor 0 0);
+  background: var(--c) 0 100%, var(--c) 50% 100%, var(--c) 100% 100%;
+  background-size: 8px calc(100% - 4px);
+  background-repeat: no-repeat;
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    left: 0;
+    top: 0;
+    animation: db3-1 1.5s linear infinite alternate,
+      db3-2 0.75s cubic-bezier(0, 200, 0.8, 200) infinite;
+  }
+}
+
+@keyframes db3-1 {
+  100% {
+    left: calc(100% - 8px);
+  }
+}
+
+@keyframes db3-2 {
+  100% {
+    top: -0.1px;
+  }
+}
+
+img {
+  width: $img-size;
+  height: $img-size;
+  margin-right: 24px;
+}
+
+svg {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: -0.5rem;
+}
+
+.login-box {
+  background-color: #dee2e6;
+  padding: 3rem;
+  text-align: center;
+}
+
+#Google {
+  font-family: "Roboto-Medium", sans-serif;
+  font-size: 1rem;
+  height: 60px;
+  background-color: #ffffff;
+  padding: 8px;
+
+  &:hover {
+    border: solid #4285f4 1px;
+  }
+  &:active {
+    background-color: #4285f4;
+  }
+}

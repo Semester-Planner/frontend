@@ -1,36 +1,35 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
-import App from "./App";
 import ErrorPage from "./error";
 import { ModuleGallery } from "./components/Modules/Module_view";
-import BackendConnection from "./components/Connection";
+import { Login, CheckAuth } from "./components/Authentication/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <CheckAuth />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "modules",
         element: <ModuleGallery />,
       },
-      {
-        path: "connection",
-        element: <BackendConnection />,
-      },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
