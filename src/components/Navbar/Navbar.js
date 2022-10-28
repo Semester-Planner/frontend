@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Login, Logout } from "../Authentication/Login";
+import { Logout } from "../Authentication/Login";
 
 export default function Navigation() {
   return (

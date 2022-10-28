@@ -53,7 +53,7 @@ export const ModuleGallery = (props) => {
   const [modules, setModules] = useState(null);
 
   useEffect(() => {
-    fetch("/user/findAllUserModules", {})
+    fetch("/module/getAllUserModules", {})
       .then((res) => {
         if (res.status !== 200) throw new Error("Server not connected");
         return res.json();
