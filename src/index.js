@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import ErrorPage from "./error";
 import { Login, CheckAuth } from "./components/Authentication/Login";
-import { ModulePage } from "./components/Modules/Module_page";
+import ModulePage from "./components/Modules/Module_page";
 
 const router = createBrowserRouter([
   {

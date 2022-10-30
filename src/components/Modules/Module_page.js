@@ -1,5 +1,5 @@
 import { ModuleGallery } from "./Module_gallery";
 
-export const ModulePage = () => {
+export default function ModulePage() {
   return <ModuleGallery />;
-};
+}
