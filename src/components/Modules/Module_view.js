@@ -48,6 +48,10 @@ export const Module = (props) => {
   );
 };
 
+export const NoModules = () => {
+  return <h3 id="xy">You haven't added any modules yet!</h3>;
+};
+
 export const ModuleGallery = (props) => {
   let gallery = [];
   const [modules, setModules] = useState(null);
@@ -62,14 +66,13 @@ export const ModuleGallery = (props) => {
       .catch((error) => console.log(error));
   }, []);
 
-  // checks if server responded, otherwise seeds view for development
-  modules
-    ? modules.map((module, index) => {
-        return gallery.push(<Module module={module} key={index} />);
-      })
-    : props.modules.map((module, index) => {
-        return gallery.push(<Module module={module} key={index} />);
-      });
+  if (modules) {
+    modules.map((module, index) => {
+      return gallery.push(<Module module={module} key={index} />);
+    });
+  } else {
+    return <NoModules />;
+  }
 
   //dynamic layout for rows and columns
   let rowCount = Math.floor(gallery.length / props.colCount) + 1;
@@ -78,6 +81,7 @@ export const ModuleGallery = (props) => {
   const buildGrid = () => {
     return renderRows();
   };
+
   const renderRows = () => {
     let rows = [];
     for (let row = 0; row < rowCount; row++) {
@@ -89,6 +93,7 @@ export const ModuleGallery = (props) => {
     }
     return rows;
   };
+
   const renderCols = () => {
     let cols = [];
     for (let col = 0; col < props.colCount; col++) {
@@ -110,36 +115,4 @@ export const ModuleGallery = (props) => {
 ModuleGallery.defaultProps = {
   colCount: 2,
   md: 6,
-  modules: [
-    {
-      name: "Web Dev",
-      mod_code: "SE_21",
-      department: "SE",
-      coordinator: "Samuel Boguslawski",
-    },
-    {
-      name: "Judging Technology",
-      mod_code: "STS_05",
-      department: "STS",
-      coordinator: "Fabian Geier",
-    },
-    {
-      name: "Design Methods",
-      mod_code: "ID_06",
-      department: "ID",
-      coordinator: "Pras Gunasekera",
-    },
-    {
-      name: "Communication & Presentation",
-      mod_code: "PM_01",
-      department: "PM",
-      coordinator: "Florian Grote",
-    },
-    {
-      name: "Design Methods",
-      mod_code: "ID_06",
-      department: "ID",
-      coordinator: "Pras Gunasekera",
-    },
-  ],
 };
