@@ -5,7 +5,7 @@ export const AddModules = () => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div className="d-flex justify-content-center flex-column container">
+    <div className="d-flex flex-column container">
       <h2 className="mb-3 mt-5 text-center">Missing something?</h2>
 
       <Button
@@ -51,32 +51,21 @@ export const SearchModal = (props) => {
   const filteredPosts = filterPosts(modules, searchQuery);
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal {...props} size="lg" aria-labelledby="module-search">
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Add modules
-        </Modal.Title>
+        <Modal.Title>Add modules</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div>
           {filteredPosts
-            ? filteredPosts.map((module, index) => (
-                <QueryResponse module={module} key={index} />
-              ))
+            ? filteredPosts.map((module, index) =>
+                index < 5 ? <QueryResponse module={module} key={index} /> : null
+              )
             : null}
         </div>
       </Modal.Body>
-
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Save</Button>
-      </Modal.Footer>
     </Modal>
   );
 };
