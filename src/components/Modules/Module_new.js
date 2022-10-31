@@ -21,7 +21,6 @@ export const AddModuleButton = () => {
 
 export const AddModuleModal = (props) => {
   const [modules, setModules] = useState(null);
-  let allModules = [];
 
   useEffect(() => {
     fetch("/module/getAllModules", {})
@@ -30,7 +29,6 @@ export const AddModuleModal = (props) => {
         return res.json();
       })
       .then((modules) => setModules(modules))
-      .then(() => (allModules = JSON.parse(JSON.stringify(modules))))
       .catch((error) => console.log(error));
   }, []);
 
