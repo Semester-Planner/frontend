@@ -32,6 +32,22 @@ export const AddModuleModal = (props) => {
       .catch((error) => console.log(error));
   }, []);
 
+  const filterPosts = (modules, query) => {
+    if (!query) {
+      return modules;
+    }
+
+    return modules.filter((module) => {
+      const postName = module.name.toLowerCase();
+      return postName.includes(query);
+    });
+  };
+
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get("s");
+  const [searchQuery, setSearchQuery] = useState(query || "");
+  const filteredPosts = filterPosts(modules, searchQuery);
+
   return (
     <Modal
       {...props}
@@ -46,10 +62,10 @@ export const AddModuleModal = (props) => {
       </Modal.Header>
 
       <Modal.Body>
-        <SearchBar />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div>
-          {modules
-            ? modules.map((module, index) => (
+          {filteredPosts
+            ? filteredPosts.map((module, index) => (
                 <QueryResponse module={module} key={index} />
               ))
             : null}
@@ -63,22 +79,28 @@ export const AddModuleModal = (props) => {
   );
 };
 
+export const SearchBar = ({ searchQuery, setSearchQuery }) => {
+  return (
+    <Form>
+      <Form.Group className="mb-3" controlId="searchBar">
+        <Form.Control
+          type="text"
+          name="s"
+          placeholder="Search by name"
+          value={searchQuery}
+          onInput={(e) => setSearchQuery(e.target.value)}
+        />
+        <Form.Text className="text-muted">Let's hope we have it.</Form.Text>
+      </Form.Group>
+    </Form>
+  );
+};
+
 export const QueryResponse = (props) => {
   return (
     <div className="border p-2 pb-3 m-1">
       <h5>{props.module.name}</h5>
       <p>{props.module.department}</p>
     </div>
-  );
-};
-
-export const SearchBar = () => {
-  return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="text" placeholder="Search by name" />
-        <Form.Text className="text-muted">Let's hope we have it.</Form.Text>
-      </Form.Group>
-    </Form>
   );
 };
