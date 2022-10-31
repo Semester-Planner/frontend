@@ -1,4 +1,4 @@
-import { Button, Modal, Form, Alert } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 export const AddModules = () => {
@@ -101,8 +101,7 @@ export const QueryResponse = (props) => {
     })
       .then((res) => {
         if (res.status !== 200) throw new Error("Something went wrong :(");
-        console.log(res.text());
-        return <Alert variant="info">Module successfully added!</Alert>;
+        return res.text();
       })
       .catch((error) => console.log(error));
   };
