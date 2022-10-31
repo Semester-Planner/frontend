@@ -1,4 +1,4 @@
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal, Form, Alert } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 export const AddModules = () => {
@@ -88,8 +88,31 @@ export const SearchBar = ({ searchQuery, setSearchQuery }) => {
 };
 
 export const QueryResponse = (props) => {
+  const addModule = (moduleId) => {
+    fetch("module/addModule", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: moduleId,
+      }),
+    })
+      .then((res) => {
+        if (res.status !== 200) throw new Error("Something went wrong :(");
+        console.log(res.text());
+        return <Alert variant="info">Module successfully added!</Alert>;
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
-    <Button variant="light" className="p-3 m-1 border">
+    <Button
+      variant="light"
+      className="p-3 m-1 border"
+      onClick={() => addModule(props.module.id)}
+    >
       <h6 className="m-0">{props.module.name}</h6>
     </Button>
   );
