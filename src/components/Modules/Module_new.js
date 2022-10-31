@@ -58,7 +58,7 @@ export const SearchModal = (props) => {
 
       <Modal.Body>
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <div>
+        <div className="d-flex flex-column">
           {filteredPosts
             ? filteredPosts.map((module, index) =>
                 index < 5 ? <QueryResponse module={module} key={index} /> : null
@@ -89,9 +89,8 @@ export const SearchBar = ({ searchQuery, setSearchQuery }) => {
 
 export const QueryResponse = (props) => {
   return (
-    <div className="border p-2 pb-3 m-1">
-      <h5>{props.module.name}</h5>
-      <p>{props.module.department}</p>
-    </div>
+    <Button variant="light" className="p-3 m-1 border">
+      <h6 className="m-0">{props.module.name}</h6>
+    </Button>
   );
 };
