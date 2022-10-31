@@ -4,8 +4,8 @@ import { AddModuleButton } from "./Module_new";
 export default function ModulePage() {
   return (
     <>
-      <AddModuleButton />
       <ModuleGallery />
+      <AddModuleButton />
     </>
   );
 }

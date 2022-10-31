@@ -5,21 +5,21 @@ export const AddModuleButton = () => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div className="d-flex flex-row-reverse">
+    <div id="x">
       <Button
-        className="rounded-circle m-3"
+        className="m-3"
         variant="secondary"
         onClick={() => setModalShow(true)}
       >
-        +
+        Add modules
       </Button>
 
-      <AddModuleModal show={modalShow} onHide={() => setModalShow(false)} />
+      <SearchModal show={modalShow} onHide={() => setModalShow(false)} />
     </div>
   );
 };
 
-export const AddModuleModal = (props) => {
+export const SearchModal = (props) => {
   const [modules, setModules] = useState(null);
 
   useEffect(() => {
