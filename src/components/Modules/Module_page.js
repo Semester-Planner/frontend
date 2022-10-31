@@ -1,11 +1,11 @@
 import { ModuleGallery } from "./Module_gallery";
-import { AddModuleButton } from "./Module_new";
+import { AddModules } from "./Module_new";
 
 export default function ModulePage() {
   return (
     <>
       <ModuleGallery />
-      <AddModuleButton />
+      <AddModules />
     </>
   );
 }

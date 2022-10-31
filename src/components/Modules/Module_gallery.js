@@ -48,10 +48,6 @@ export const Module = (props) => {
   );
 };
 
-export const NoModules = () => {
-  return <h3 id="xy">You haven't added any modules yet!</h3>;
-};
-
 export const ModuleGallery = () => {
   let modules = [];
   const [userModules, setModules] = useState(null);
@@ -71,7 +67,7 @@ export const ModuleGallery = () => {
       return modules.push(<Module module={module} key={index} />);
     });
   } else {
-    return <NoModules />;
+    return null;
   }
 
   return <CreateGallery modules={modules} />;

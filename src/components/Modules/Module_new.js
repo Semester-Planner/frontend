@@ -1,14 +1,16 @@
 import { Button, Modal, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
-export const AddModuleButton = () => {
+export const AddModules = () => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div id="x">
+    <div className="d-flex justify-content-center flex-column container">
+      <h2 className="mb-3 mt-5 text-center">Missing something?</h2>
+
       <Button
-        className="m-3"
-        variant="secondary"
+        className="mb-5 p-3 border"
+        variant="light"
         onClick={() => setModalShow(true)}
       >
         Add modules
