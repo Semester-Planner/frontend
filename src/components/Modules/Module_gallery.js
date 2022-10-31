@@ -1,6 +1,24 @@
 import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
+const removeModule = (moduleId) => {
+  fetch("module/removeModule", {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: moduleId,
+    }),
+  })
+    .then((res) => {
+      if (res.status !== 200) throw new Error("Something went wrong :(");
+      return res.text();
+    })
+    .catch((error) => console.log(error));
+};
+
 export const Module = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -41,6 +59,10 @@ export const Module = (props) => {
           </Button>
           <Button variant="secondary" onClick={handleClose}>
             Save Changes
+          </Button>
+          <Button onClick={() => removeModule(props.module.id)}>
+            {" "}
+            Delete{" "}
           </Button>
         </Modal.Footer>
       </Modal>
