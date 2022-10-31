@@ -44,14 +44,9 @@ export const AddModuleModal = (props) => {
           Add modules
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control type="text" placeholder="Search by name" />
-            <Form.Text className="text-muted">Let's hope we have it.</Form.Text>
-          </Form.Group>
-        </Form>
 
+      <Modal.Body>
+        <SearchBar />
         <div>
           {modules
             ? modules.map((module, index) => (
@@ -60,6 +55,7 @@ export const AddModuleModal = (props) => {
             : null}
         </div>
       </Modal.Body>
+
       <Modal.Footer>
         <Button onClick={props.onHide}>Save</Button>
       </Modal.Footer>
@@ -73,5 +69,16 @@ export const QueryResponse = (props) => {
       <h5>{props.module.name}</h5>
       <p>{props.module.department}</p>
     </div>
+  );
+};
+
+export const SearchBar = () => {
+  return (
+    <Form>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control type="text" placeholder="Search by name" />
+        <Form.Text className="text-muted">Let's hope we have it.</Form.Text>
+      </Form.Group>
+    </Form>
   );
 };
