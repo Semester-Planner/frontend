@@ -1,6 +1,24 @@
 import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
+const removeModule = (moduleId) => {
+  fetch("module/removeModule", {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: moduleId,
+    }),
+  })
+    .then((res) => {
+      if (res.status !== 200) throw new Error("Something went wrong :(");
+      return res.text();
+    })
+    .catch((error) => console.log(error));
+};
+
 export const Module = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -42,15 +60,19 @@ export const Module = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Save Changes
           </Button>
+          <Button onClick={() => removeModule(props.module.id)}>
+            {" "}
+            Delete{" "}
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
 };
 
-export const ModuleGallery = (props) => {
-  let gallery = [];
-  const [modules, setModules] = useState(null);
+export const ModuleGallery = () => {
+  let modules = [];
+  const [userModules, setModules] = useState(null);
 
   useEffect(() => {
     fetch("/module/getAllUserModules", {})
@@ -58,28 +80,32 @@ export const ModuleGallery = (props) => {
         if (res.status !== 200) throw new Error("Server not connected");
         return res.json();
       })
-      .then((modules) => setModules(modules))
+      .then((userModules) => setModules(userModules))
       .catch((error) => console.log(error));
   }, []);
 
-  // checks if server responded, otherwise seeds view for development
-  modules
-    ? modules.map((module, index) => {
-        return gallery.push(<Module module={module} key={index} />);
-      })
-    : props.modules.map((module, index) => {
-        return gallery.push(<Module module={module} key={index} />);
-      });
+  if (userModules) {
+    userModules.map((module, index) => {
+      return modules.push(<Module module={module} key={index} />);
+    });
+  } else {
+    return null;
+  }
 
-  //dynamic layout for rows and columns
-  let rowCount = Math.floor(gallery.length / props.colCount) + 1;
+  return <CreateGallery modules={modules} />;
+};
+
+export const CreateGallery = (props) => {
+  let rowCount = Math.floor(props.modules.length / props.colCount) + 1;
   let index = 0;
 
   const buildGrid = () => {
     return renderRows();
   };
+
   const renderRows = () => {
     let rows = [];
+
     for (let row = 0; row < rowCount; row++) {
       rows.push(
         <Row className="Row" key={row}>
@@ -87,59 +113,31 @@ export const ModuleGallery = (props) => {
         </Row>
       );
     }
+
     return rows;
   };
+
   const renderCols = () => {
     let cols = [];
+
     for (let col = 0; col < props.colCount; col++) {
-      if (index < gallery.length) {
+      if (index < props.modules.length) {
         cols.push(
           <Col key={col} className="Column p-3" md={props.md}>
-            {gallery[index]}
+            {props.modules[index]}
           </Col>
         );
         index++;
       }
     }
+
     return cols;
   };
 
   return <Container className="p-3">{buildGrid()}</Container>;
 };
 
-ModuleGallery.defaultProps = {
+CreateGallery.defaultProps = {
   colCount: 2,
   md: 6,
-  modules: [
-    {
-      name: "Web Dev",
-      mod_code: "SE_21",
-      department: "SE",
-      coordinator: "Samuel Boguslawski",
-    },
-    {
-      name: "Judging Technology",
-      mod_code: "STS_05",
-      department: "STS",
-      coordinator: "Fabian Geier",
-    },
-    {
-      name: "Design Methods",
-      mod_code: "ID_06",
-      department: "ID",
-      coordinator: "Pras Gunasekera",
-    },
-    {
-      name: "Communication & Presentation",
-      mod_code: "PM_01",
-      department: "PM",
-      coordinator: "Florian Grote",
-    },
-    {
-      name: "Design Methods",
-      mod_code: "ID_06",
-      department: "ID",
-      coordinator: "Pras Gunasekera",
-    },
-  ],
 };

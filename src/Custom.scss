@@ -1,6 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./Components/Navbar/Navbar.scss";
-@import "./components/Modules/Module_view.scss";
+@import "./components/Modules/Modules.scss";
 @import "./components/Authentication/Login.scss";
 
 @mixin centre($axis: "xy") {

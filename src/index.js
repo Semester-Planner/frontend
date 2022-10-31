@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 import ErrorPage from "./error";
-import { ModuleGallery } from "./components/Modules/Module_view";
 import { Login, CheckAuth } from "./components/Authentication/Login";
+import ModulePage from "./components/Modules/Module_page";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "modules",
-        element: <ModuleGallery />,
+        element: <ModulePage />,
       },
     ],
   },
