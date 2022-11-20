@@ -6,8 +6,9 @@ describe("App first paint", () => {
 
   it("shows only navbar", () => {
     render(<App />);
+    expect(screen.getByRole("navigation")).toBeInTheDocument();
     expect(screen.getByText(/The Semester Planner/i)).toBeInTheDocument();
     expect(screen.getByText(/Log out/i)).toBeInTheDocument();
-    expect(() => screen.getByText(/Missing something/i)).toThrow();
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
   });
 });
