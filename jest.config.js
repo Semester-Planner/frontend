@@ -4,4 +4,5 @@ module.exports = {
   coverageDirectory: "coverage",
   testEnvironment: "jest-environment-jsdom",
   moduleDirectories: ["utils", __dirname],
+  setupFilesAfterEnv: ["./src/mocks/setup-env.js"],
 };
