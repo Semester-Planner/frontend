@@ -1,4 +1,5 @@
-import { server } from "./mocks/server.js";
+import { server } from "./server.js";
+console.log("Setting up server");
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());
 
