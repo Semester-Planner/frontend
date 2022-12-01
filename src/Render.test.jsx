@@ -1,5 +1,9 @@
 import { render, screen, waitFor } from "./utils/test-utils";
 import { CheckAuth } from "./components/Authentication/Login";
+
+//mocking backend interaction
+import { server } from "./mocks/server";
+import { rest } from "msw";
 import "whatwg-fetch";
 
 describe("App first paint", () => {
@@ -15,7 +19,13 @@ describe("App first paint", () => {
   });
 
   it("redirects to login if user is unauthorized", async () => {
-    await render(<CheckAuth />); // MSW returns 403
+    server.use(
+      rest.get("http://localhost/auth/session", (req, res, ctx) => {
+        return res(ctx.status(403));
+      })
+    );
+
+    await render(<CheckAuth />);
     await expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
     await waitFor(() => expect(window.location.href).toBe("/login"));
   });
