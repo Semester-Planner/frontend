@@ -18,6 +18,14 @@ describe("App first paint", () => {
     });
   });
 
+  it("renders app if user is authorized", async () => {
+    await render(<CheckAuth />);
+    await waitFor(() => expect(window.location.href).toBe("http://localhost"));
+    await waitFor(() =>
+      expect(screen.getByText(/The Semester Planner/i)).toBeInTheDocument()
+    );
+  });
+
   it("redirects to login if user is unauthorized", async () => {
     server.use(
       rest.get("http://localhost/auth/session", (req, res, ctx) => {
