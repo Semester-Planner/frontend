@@ -1,12 +1,12 @@
 import { rest } from "msw";
 
 export const handlers = [
-  // Handles a "GET /user" request
-  rest.get("/auth/session", (req, res, ctx) => {
-    return res(ctx.status(403));
+  // Handles a "GET /auth/session" request
+  rest.get("http://localhost/auth/session", (req, res, ctx) => {
+    return res(ctx.status(200));
   }),
 
-  rest.get("/module/getAllUserModules", (req, res, ctx) => {
+  rest.get("http://localhost/module/getAllUserModules", (req, res, ctx) => {
     return res(ctx.status(403));
   }),
 ];

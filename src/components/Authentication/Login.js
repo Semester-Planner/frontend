@@ -9,10 +9,10 @@ export const CheckAuth = () => {
   useEffect(() => {
     fetch("/auth/session", {})
       .then((res) => {
-        if (res.status === 401) return (window.location.href = "/login");
+        if (res.status !== 200) return (window.location.href = "/login");
         setLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => (window.location.href = "/login"));
   }, []);
 
   if (loading)
