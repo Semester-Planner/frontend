@@ -1,11 +1,17 @@
 import { server } from "./server.js";
-console.log("Setting up server");
-// Establish API mocking before all tests.
-beforeAll(() => server.listen());
 
-// Reset any request handlers that we may add during the tests,
-// so they don't affect other tests.
+// Establishes API mocking before all tests.
+// Separate from the test file so that it can be used on multiple test suites at once.
+beforeAll(() => {
+  console.log("Setting up server");
+  server.listen();
+});
+
+// Reset any request handlers that we may add during the tests.
 afterEach(() => server.resetHandlers());
 
-// Clean up after the tests are finished.
-afterAll(() => server.close());
+// Clean up after a test suite is finished.
+afterAll(() => {
+  console.log("Closing server");
+  server.close();
+});
