@@ -1,7 +1,7 @@
 module.exports = {
   verbose: true,
   collectCoverage: true,
-  collectCoverageFrom: ["src/*.{js,jsx}"],
+  collectCoverageFrom: ["**/components/**/*.{js,jsx}"],
   coverageDirectory: "coverage",
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["./src/mocks/setup-env.js"],
