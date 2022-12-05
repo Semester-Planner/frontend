@@ -116,3 +116,5 @@ export const QueryResponse = (props) => {
     </Button>
   );
 };
+
+export default SearchModal;
