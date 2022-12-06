@@ -1,4 +1,4 @@
-import { render } from "../../utils/test-utils";
+import { render, screen, waitFor } from "../../utils/test-utils";
 import userEvent from "@testing-library/user-event";
 import "whatwg-fetch";
 
@@ -9,8 +9,12 @@ describe("Module interactions", () => {
     render(<ModulePage />);
   });
 
-  it("renders modules page", () => {
-    expect(screen.findByText(/Missing something?/i));
+  it("renders modules page", async () => {
+    await waitFor(() => {
+      expect(screen.getByText(/Missing something?/i));
+      expect(screen.getByText(/Composition/i));
+      expect(screen.getByText(/Add modules/i));
+    });
   });
 
   it("opens a modal component", async () => {
