@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const removeModule = (moduleId) => {
   fetch("module/removeModule", {
-    method: "POST",
+    method: "DELETE",
     headers: {
       Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json",
