@@ -3,6 +3,8 @@ import "./Custom.scss";
 
 import Navbar from "./components/Navbar/Navbar";
 
+// Main app component
+// Renders the navbar and the page contents
 function App() {
   return (
     <div className="container-fluid">
