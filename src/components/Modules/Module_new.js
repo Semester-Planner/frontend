@@ -39,10 +39,12 @@ export const SearchModal = (props) => {
       return modules;
     }
 
-    return modules.filter((module) => {
+    var results = modules.filter((module) => {
       const postName = module.name.toLowerCase();
       return postName.includes(query);
     });
+
+    return results;
   };
 
   const { search } = window.location;
@@ -72,14 +74,14 @@ export const SearchModal = (props) => {
 
 export const SearchBar = ({ searchQuery, setSearchQuery }) => {
   return (
-    <Form>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <Form.Group className="mb-3" controlId="searchBar">
         <Form.Control
           type="text"
           name="s"
           placeholder="Search by name"
           value={searchQuery}
-          onInput={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <Form.Text className="text-muted">Let's hope we have it.</Form.Text>
       </Form.Group>

@@ -19,17 +19,6 @@ describe("Interacting with search and query", () => {
     expect(results.length).toBe(6); // 5 modules + 1 close button
   });
 
-  it("searches for valid results", async () => {
-    const searchInput = screen.getByPlaceholderText(/Search by name/i);
-    await userEvent.type(searchInput, "Composition");
-
-    await waitFor(() => {
-      expect(screen.getByText(/Composition/i)).toBeInTheDocument();
-      const results = screen.getAllByRole("button");
-      expect(results.length).toBe(2); // close button + 1 module
-    });
-  });
-
   it.todo("show error message if search fails");
   it("searches for invalid results", async () => {
     const searchInput = screen.getByPlaceholderText(/Search by name/i);
