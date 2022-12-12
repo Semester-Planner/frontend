@@ -10,7 +10,7 @@ import ModulePage from "./components/Modules/Module_page";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <CheckAuth />,
+    element: <CheckAuth />, // if 200, redirects to <App>
     errorElement: <ErrorPage />,
     children: [
       {

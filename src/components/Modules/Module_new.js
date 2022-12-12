@@ -1,6 +1,7 @@
 import { Button, Modal, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
+// A button that opens a modal to search for modules
 export const AddModules = () => {
   const [modalShow, setModalShow] = useState(false);
 
@@ -21,6 +22,7 @@ export const AddModules = () => {
   );
 };
 
+// Fetches all modules and renders a search bar that filters modules
 export const SearchModal = (props) => {
   const [modules, setModules] = useState(null);
 
@@ -39,10 +41,12 @@ export const SearchModal = (props) => {
       return modules;
     }
 
-    return modules.filter((module) => {
+    var results = modules.filter((module) => {
       const postName = module.name.toLowerCase();
       return postName.includes(query);
     });
+
+    return results;
   };
 
   const { search } = window.location;
@@ -70,16 +74,17 @@ export const SearchModal = (props) => {
   );
 };
 
+// Renders a search bar that updates dynamically
 export const SearchBar = ({ searchQuery, setSearchQuery }) => {
   return (
-    <Form>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <Form.Group className="mb-3" controlId="searchBar">
         <Form.Control
           type="text"
           name="s"
           placeholder="Search by name"
           value={searchQuery}
-          onInput={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <Form.Text className="text-muted">Let's hope we have it.</Form.Text>
       </Form.Group>
@@ -87,6 +92,7 @@ export const SearchBar = ({ searchQuery, setSearchQuery }) => {
   );
 };
 
+// Renders queried modules that can be added to the user's modules
 export const QueryResponse = (props) => {
   const addModule = (moduleId) => {
     fetch("module/addModule", {
