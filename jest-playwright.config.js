@@ -1,11 +1,9 @@
 module.exports = {
-  launchOptions: {
-    headless: "false",
-  },
+  browsers: ["chromium", "firefox", "webkit"],
   serverOptions: [
     {
       command: "npm start",
-      host: "localhost",
+      host: "127.0.0.1",
       port: 3000,
       launchTimeout: 30000,
       debug: "true",
@@ -16,11 +14,17 @@ module.exports = {
       },
     },
     {
-      command: "cd ../backend && npm start",
-      host: "localhost",
+      command: "cd ../backend && npm run setup:db && npm start",
+      host: "127.0.0.1",
       port: 3001,
       launchTimeout: 30000,
-      debug: "true",
+      usedPortAction: "kill",
+      options: {
+        env: {
+          NODE_ENV: "development",
+          NOAUTH: "true",
+        },
+      },
     },
   ],
 };
