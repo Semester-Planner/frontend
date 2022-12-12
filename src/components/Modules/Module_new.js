@@ -1,6 +1,7 @@
 import { Button, Modal, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
+// A button that opens a modal to search for modules
 export const AddModules = () => {
   const [modalShow, setModalShow] = useState(false);
 
@@ -21,6 +22,7 @@ export const AddModules = () => {
   );
 };
 
+// Fetches all modules and renders a search bar that filters modules
 export const SearchModal = (props) => {
   const [modules, setModules] = useState(null);
 
@@ -72,6 +74,7 @@ export const SearchModal = (props) => {
   );
 };
 
+// Renders a search bar that updates dynamically
 export const SearchBar = ({ searchQuery, setSearchQuery }) => {
   return (
     <Form onSubmit={(e) => e.preventDefault()}>
@@ -89,6 +92,7 @@ export const SearchBar = ({ searchQuery, setSearchQuery }) => {
   );
 };
 
+// Renders queried modules that can be added to the user's modules
 export const QueryResponse = (props) => {
   const addModule = (moduleId) => {
     fetch("module/addModule", {

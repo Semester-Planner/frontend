@@ -1,6 +1,7 @@
 import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
+// Gets called under Module component
 const removeModule = (moduleId) => {
   fetch("module/removeModule", {
     method: "POST",
@@ -19,6 +20,7 @@ const removeModule = (moduleId) => {
     .catch((error) => console.log(error));
 };
 
+// Opens a popup modal with module information
 export const Module = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -70,6 +72,7 @@ export const Module = (props) => {
   );
 };
 
+// Fetches all user modules, renders and maps them
 export const ModuleGallery = () => {
   let modules = [];
   const [userModules, setModules] = useState(null);
@@ -95,6 +98,7 @@ export const ModuleGallery = () => {
   return <CreateGallery modules={modules} />;
 };
 
+// Creates a grid layout based on the number of user modules
 export const CreateGallery = (props) => {
   let rowCount = Math.floor(props.modules.length / props.colCount) + 1;
   let index = 0;
@@ -137,6 +141,7 @@ export const CreateGallery = (props) => {
   return <Container className="p-3">{buildGrid()}</Container>;
 };
 
+// Enables to change design of gallery grid
 CreateGallery.defaultProps = {
   colCount: 2,
   md: 6,
